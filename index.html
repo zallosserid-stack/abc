@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golaga | Sejuknya Alam</title>
+
+  <style>
+    :root {
+      --hijau: #214c3b;
+      --daun: #47765b;
+      --krem: #f7f6ee;
+      --emas: #e6c47b;
+      --teks: #24372d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--krem);
+      color: var(--teks);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVIGASI */
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--emas);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--emas);
+    }
+
+    /* HALAMAN PEMBUKA */
+    .hero {
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(14,39,29,.85),
+          rgba(14,39,29,.35)
+        ),
+        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      padding: 140px 7%;
+      max-width: 800px;
+    }
+
+    .label {
+      color: var(--daun);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero .label {
+      color: var(--emas);
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(55px, 8vw, 100px);
+      font-weight: normal;
+      line-height: 1.05;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #f0f3ed;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 25px 8px 0 0;
+      padding: 12px 23px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: var(--emas);
+      color: var(--hijau);
+    }
+
+    .btn-primary:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 1px solid white;
+      color: white;
+    }
+
+    /* BAGIAN TENTANG */
+    .tentang {
+      padding: 85px 7%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    h2 {
+      color: var(--hijau);
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: normal;
+      line-height: 1.2;
+      margin: 15px 0 22px;
+    }
+
+    .tentang p {
+      color: #637267;
+      margin-bottom: 15px;
+    }
+
+    .quote {
+      padding: 35px;
+      border-left: 4px solid var(--emas);
+      border-radius: 0 20px 20px 0;
+      background: #e8eee4;
+      font: italic 25px/1.6 Georgia, serif;
+      color: var(--hijau);
+    }
+
+    /* GALERI */
+    .galeri {
+      padding: 80px 7%;
+      background: #e8eee4;
+    }
+
+    .galeri-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .galeri-header p {
+      max-width: 400px;
+      color: #637267;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 230px 230px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #ccd9c7;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(transparent, #102d20bb);
+    }
+
+    .gallery-item span {
+      position: absolute;
+      z-index: 1;
+      bottom: 15px;
+      left: 18px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .caption {
+      margin-top: 15px;
+      color: #637267;
+      font-size: 12px;
+    }
+
+    /* HARGA DAN LOKASI */
+    .informasi {
+      padding: 85px 7%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .kartu-harga {
+      padding: 35px;
+      background: var(--hijau);
+      color: white;
+      border-radius: 25px;
+    }
+
+    .kartu-harga h2 {
+      color: white;
+      font-size: 38px;
+    }
+
+    .kartu-harga p {
+      color: #dbe6dc;
+    }
+
+    .harga {
+      padding: 17px 0;
+      border-bottom: 1px solid #ffffff35;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .harga strong {
+      color: var(--emas);
+      white-space: nowrap;
+    }
+
+    .catatan {
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .kartu-lokasi {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 12px 35px #24372d10;
+    }
+
+    .kartu-lokasi p {
+      color: #637267;
+    }
+
+    .peta {
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 16px;
+      margin: 20px 0;
+    }
+
+    .link-peta {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--hijau);
+      font-weight: bold;
+    }
+
+    /* TIPS */
+    .tips {
+      padding: 80px 7%;
+      background: #eef0e6;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .tip {
+      padding: 28px;
+      border-radius: 18px;
+      background: white;
+    }
+
+    .tip .icon {
+      font-size: 35px;
+    }
+
+    .tip h3 {
+      color: var(--hijau);
+      margin: 12px 0;
+    }
+
+    .tip p {
+      color: #637267;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 7%;
+      background: #183b2d;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      color: var(--emas);
+    }
+
+    /* TAMPILAN HP */
+    @media (max-width: 800px) {
+      nav {
+        padding: 20px 5%;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .tentang,
+      .informasi {
+        grid-template-columns: 1fr;
+      }
+
+      .galeri-header {
+        display: block;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 250px 180px 180px;
+      }
+
+      .gallery-item:first-child {
+        grid-row: span 2;
+      }
+
+      .gallery-item:last-child {
+        grid-column: span 2;
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+
+      .hero {
+        min-height: 620px;
+      }
+
+      .gallery-grid {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .gallery-item {
+        height: 230px;
+      }
+
+      .gallery-item:first-child {
+        height: 300px;
+      }
+
+      .kartu-harga,
+      .kartu-lokasi {
+        padding: 23px;
+      }
+
+      .harga {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGASI -->
+  <nav>
+    <a href="#beranda" class="logo">GO<span>LAGA</span></a>
+
+    <div class="nav-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#galeri">Keindahan</a>
+      <a href="#informasi">Tiket & Lokasi</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="beranda">
+    <div class="hero-content">
+      <div class="label">
+        Wisata Alam · Purbalingga, Jawa Tengah
+      </div>
+
+      <h1>Temukan<br>Sejuknya<br>Golaga.</h1>
+
+      <p>
+        Melangkah lebih pelan, hirup udara segar,
+        dan nikmati pesona alam yang menenangkan.
+        Jadikan setiap sudut perjalanan sebagai cerita indah.
+      </p>
+
+      <a href="#informasi" class="btn btn-primary">
+        Rencanakan Kunjungan ↗
+      </a>
+
+      <a href="#galeri" class="btn btn-outline">
+        Jelajahi Keindahan
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- TENTANG GOLAGA -->
+    <section class="tentang" id="tentang">
+      <div>
+        <div class="label">Ruang untuk bernapas</div>
+
+        <h2>
+          Alam yang mengajakmu untuk berhenti sejenak.
+        </h2>
+
+        <p>
+          Golaga adalah nama populer untuk Goa Lawa Purbalingga,
+          destinasi wisata alam di kawasan sejuk lereng Gunung Slamet.
+          Daya tarik utamanya adalah goa lava yang unik dan suasana
+          pegunungan yang menyegarkan.
+        </p>
+
+        <p>
+          Nikmati perjalanan bersama keluarga atau teman,
+          jelajahi sudut-sudut wisata, dan abadikan momen
+          di tengah suasana alam yang asri.
+        </p>
+      </div>
+
+      <div class="quote">
+        “Kadang, yang kita butuhkan hanya udara sejuk,
+        pemandangan hijau, dan waktu untuk menikmati hari.”
+      </div>
+    </section>
+
+    <!-- GALERI FOTO -->
+    <section class="galeri" id="galeri">
+      <div class="galeri-header">
+        <div>
+          <div class="label">Palet warna alam</div>
+          <h2>Keindahan di setiap sudut.</h2>
+        </div>
+
+        <p>
+          Nuansa hijau, cahaya matahari yang lembut,
+          dan warna bunga menjadi inspirasi untuk menikmati
+          alam dengan tenang.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85"
+            alt="Pepohonan hijau di hutan"
+          >
+          <span>Rimbun dan menenangkan</span>
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=85"
+            alt="Bunga berwarna lembut"
+          >
+          <span>Warna bunga yang ceria</span>
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=85"
+            alt="Cahaya matahari pagi"
+          >
+          <span>Cahaya pagi yang hangat</span>
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=85"
+            alt="Tanaman dan taman"
+          >
+          <span>Sudut taman yang asri</span>
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=85"
+            alt="Pemandangan alam hijau"
+          >
+          <span>Jeda di tengah alam</span>
+        </div>
+
+      </div>
+
+      <p class="caption">
+        Catatan: foto merupakan ilustrasi suasana alam dan bunga,
+        bukan dokumentasi resmi lokasi Golaga.
+      </p>
+    </section>
+
+    <!-- HARGA TIKET DAN LOKASI -->
+    <section class="informasi" id="informasi">
+
+      <div class="kartu-harga">
+        <div class="label" style="color:#e6c47b">
+          Sebelum berangkat
+        </div>
+
+        <h2>Info Tiket Golaga</h2>
+
+        <p>
+          Harga dapat berubah saat akhir pekan,
+          hari libur, atau sesuai kebijakan pengelola.
+        </p>
+
+        <div class="harga">
+          <span>Tiket masuk · Senin–Jumat</span>
+          <strong>Rp20.000</strong>
+        </div>
+
+        <div class="harga">
+          <span>Sabtu, Minggu & tanggal merah</span>
+          <strong>Rp25.000</strong>
+        </div>
+
+        <div class="harga">
+          <span>Wahana tambahan</span>
+          <strong>Mulai Rp10.000</strong>
+        </div>
+
+        <p class="catatan">
+          Harga merupakan informasi awal dan dapat berubah.
+          Tiket wahana, parkir, promo, dan tarif saat acara
+          khusus dapat berbeda. Konfirmasikan sebelum berangkat.
+        </p>
+
+        <a
+          class="btn btn-primary"
+          href="https://owabong.id/tour/harga-tiket-masuk-golaga/"
+          target="_blank"
+          rel="noopener"
+        >
+          Cek Info Tiket ↗
+        </a>
+      </div>
+
+      <div class="kartu-lokasi">
+        <div class="label">Temukan arah perjalanan</div>
+
+        <h2>Lokasi Golaga</h2>
+
+        <p>
+          <strong>Goa Lawa Purbalingga (Golaga)</strong><br>
+          Desa Siwarak, Kecamatan Karangreja,
+          Kabupaten Purbalingga, Jawa Tengah, Indonesia.
+        </p>
+
+        <!-- PETA GOOGLE MAPS -->
+        <iframe
+          class="peta"
+          src="https://maps.google.com/maps?q=Goa%20Lawa%20Purbalingga&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Peta lokasi Goa Lawa Purbalingga"
+        ></iframe>
+
+        <p>
+          Gunakan peta untuk melihat lokasi dan
+          memilih rute perjalanan dari tempatmu.
+        </p>
+
+        <a
+          class="link-peta"
+          href="https://www.google.com/maps/search/?api=1&query=Goa+Lawa+Purbalingga"
+          target="_blank"
+          rel="noopener"
+        >
+          Buka titik lokasi di Google Maps ↗
+        </a>
+      </div>
+
+    </section>
+
+    <!-- TIPS BERKUNJUNG -->
+    <section class="tips">
+      <div class="label">Biar kunjungan makin nyaman</div>
+
+      <h2>Catatan kecil sebelum berangkat.</h2>
+
+      <div class="tips-grid">
+
+        <article class="tip">
+          <div class="icon">🌿</div>
+          <h3>Pakai alas kaki nyaman</h3>
+          <p>
+            Pilih sepatu atau sandal yang tidak licin
+            karena area wisata alam bisa lembap.
+          </p>
+        </article>
+
+        <article class="tip">
+          <div class="icon">🌸</div>
+          <h3>Jaga taman tetap indah</h3>
+          <p>
+            Nikmati bunga tanpa memetiknya,
+            dan buang sampah pada tempatnya.
+          </p>
+        </article>
+
+        <article class="tip">
+          <div class="icon">🧥</div>
+          <h3>Siapkan pakaian hangat</h3>
+          <p>
+            Udara kawasan pegunungan bisa terasa sejuk,
+            terutama pada pagi hari atau setelah hujan.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <strong>GOLAGA</strong>
+      <span> · Sejuknya alam, indahnya perjalanan.</span>
+    </div>
+
+    <div>
+      Wisata alam Purbalingga ·
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Goa+Lawa+Purbalingga"
+        target="_blank"
+        rel="noopener"
+      >
+        Lihat peta
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
